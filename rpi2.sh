@@ -70,6 +70,12 @@ iface lo inet loopback
 
 auto eth0
 iface eth0 inet dhcp
+
+auto wlan0
+iface wlan0 inet dhcp
+   wpa-ssid "XIXI"
+   wpa-psk "XIXI"
+
 EOF
 
 cat << EOF > kali-$architecture/etc/resolv.conf
@@ -259,14 +265,14 @@ rm -rf ${basedir}/kernel ${basedir}/bootp ${basedir}/root ${basedir}/kali-$archi
 # If you're building an image for yourself, comment all of this out, as you
 # don't need the sha1sum or to compress the image, since you will be testing it
 # soon.
-echo "Generating sha1sum for kali-$1-rpi2.img"
-sha1sum kali-$1-rpi2.img > ${basedir}/kali-$1-rpi2.img.sha1sum
-# Don't pixz on 32bit, there isn't enough memory to compress the images.
-MACHINE_TYPE=`uname -m`
-if [ ${MACHINE_TYPE} == 'x86_64' ]; then
-echo "Compressing kali-$1-rpi2.img"
-pixz ${basedir}/kali-$1-rpi2.img ${basedir}/kali-$1-rpi2.img.xz
-rm ${basedir}/kali-$1-rpi2.img
-echo "Generating sha1sum for kali-$1-rpi2.img.xz"
-sha1sum kali-$1-rpi2.img.xz > ${basedir}/kali-$1-rpi2.img.xz.sha1sum
-fi
+#echo "Generating sha1sum for kali-$1-rpi2.img"
+#sha1sum kali-$1-rpi2.img > ${basedir}/kali-$1-rpi2.img.sha1sum
+## Don't pixz on 32bit, there isn't enough memory to compress the images.
+#MACHINE_TYPE=`uname -m`
+#if [ ${MACHINE_TYPE} == 'x86_64' ]; then
+#echo "Compressing kali-$1-rpi2.img"
+#pixz ${basedir}/kali-$1-rpi2.img ${basedir}/kali-$1-rpi2.img.xz
+#rm ${basedir}/kali-$1-rpi2.img
+#echo "Generating sha1sum for kali-$1-rpi2.img.xz"
+#sha1sum kali-$1-rpi2.img.xz > ${basedir}/kali-$1-rpi2.img.xz.sha1sum
+#fi

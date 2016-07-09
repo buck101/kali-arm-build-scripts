@@ -49,10 +49,15 @@ cp /usr/bin/qemu-arm-static kali-$architecture/usr/bin/
 LANG=C chroot kali-$architecture /debootstrap/debootstrap --second-stage
 cat << EOF > kali-$architecture/etc/apt/sources.list
 deb http://$mirror/kali kali-rolling main contrib non-free
+
+deb http://mirrors.ustc.edu.cn/kali kali-rolling main non-free contrib
+deb-src http://mirrors.ustc.edu.cn/kali kali-rolling main non-free contrib
+deb http://mirrors.ustc.edu.cn/kali-security kali-current/updates main contrib non-free
+deb-src http://mirrors.ustc.edu.cn/kali-security kali-current/updates main contrib non-free
 EOF
 
 # Set hostname
-echo "kali" > kali-$architecture/etc/hostname
+echo "xi" > kali-$architecture/etc/hostname
 
 # So X doesn't complain, we add kali to hosts
 cat << EOF > kali-$architecture/etc/hosts
